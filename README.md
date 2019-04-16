@@ -1,4 +1,4 @@
-This sample project demonstrates WHY you should use a Node.js framework.
+This sample project demonstrates WHY you should use a Node.js framework like Express.
 
 The project defaults to using raw Node.js without Express.
 
