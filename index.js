@@ -1,35 +1,40 @@
-// node index.js to run
-
-const http = require('http');
+const http = require('http')
 
 const headers = {
-    'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Methods': 'OPTIONS, POST, GET',
-    'Access-Control-Max-Age': 2592000, // 30 days
-    /** add other headers as per requirement */
-};
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Methods': 'OPTIONS, POST, GET',
+  'Access-Control-Max-Age': 2592000 // 30 days
+  /** add other headers as per requirement */
+}
 
-http.createServer((req, res) => {
-    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+http
+  .createServer((req, res) => {
+    // Only permits content being posted from http://localhost:3000
+    res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000')
     // res.setHeader('Access-Control-Allow-Origin', '*'); - allow posts from anywhere - not recommended
 
     if (req.method === 'OPTIONS') {
-        res.writeHead(204, headers);
-        res.end();
-        return;
+      res.writeHead(204, headers)
+      return res.end()
     }
 
-    if (['GET', 'POST', 'PUT'].indexOf(req.method) > -1) {
-        req.on('data', chunk => {
-            // posted data - not formatted
-            console.log(chunk.toString());
-        });
+    if (['GET', 'POST', 'PUT'].indexOf(req.method) >= 0) {
+      // chunks through the posted data to build a string
+      let postedData = ''
+      req.on('data', chunk => {
+        postedData += chunk.toString()
+      })
+      req.on('end', () => {
+        // postedData = {"website":"some value"}
+        // with express, body-parser provides req.body.website for this value
 
-        res.writeHead(200, headers);
-        res.end('success');
-        return;
+        // clean out the curly braces for a basic response
+        const cleanData = postedData.replace(/[{}]/g, '')
+        return res.end(cleanData)
+      })
     }
 
-    res.writeHead(405, headers);
-    res.end(`${req.method} is not allowed for the request.`);
-}).listen(process.env.PORT || 3030);
+    res.writeHead(405, headers)
+    return res.end(`${req.method} is not allowed for the request.`)
+  })
+  .listen(process.env.PORT || 3030)

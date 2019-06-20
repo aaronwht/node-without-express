@@ -1,18 +1,17 @@
-// node express.js to run
-const express = require("express");
-const http = require('http');
-const cors = require("cors");
-const app = express();
-const bodyParser = require("body-parser");
+const express = require('express')
+const http = require('http')
+const cors = require('cors')
+const app = express()
+const bodyParser = require('body-parser')
 
-app.use(cors());
-app.options("*", cors());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.post("/", (req, res) => {
-    // posted data
-    console.log(req.body.website);
-    res.send("success");
-    return;
-});
-http.createServer(app).listen(process.env.PORT || 3030);
+app.use(cors())
+app.options('*', cors())
+// supports parsing of application/json
+app.use(bodyParser.json())
+
+// supports parsing of applicaiton/x-www-form-urlencoded data
+app.use(bodyParser.urlencoded({ extended: false }))
+app.post('/', (req, res) => {
+  return res.send(req.body.website)
+})
+http.createServer(app).listen(process.env.PORT || 3030)
