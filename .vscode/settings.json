@@ -1,8 +1,0 @@
-{
-  "git.autofetch": true,
-  "editor.minimap.enabled": false,
-  "workbench.colorTheme": "Cobalt2",
-  "editor.formatOnSave": true,
-  "prettier.singleQuote": true,
-  "prettier.semi": false
-}
