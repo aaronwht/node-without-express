@@ -2,10 +2,6 @@
 
 This project defaults to using raw Node.js without Express.
 
-# Deploy to AWS Elastic Beanstalk with Node.js & MongoDB
-
-### This project is for use on AWS Elastic Beanstalk.  
-
 [Contact me](https://www.aaronwht.com/contact-me) if you run into problems with this code.  
 
 Instructions to run the app:  
