@@ -28,9 +28,13 @@ http
         // postedData = {"website":"some value"}
         // with express, body-parser provides req.body.website for this value
 
-        // turn data string into JSON 
-        const cleanData = JSON.parse(postedData)
-        return res.end(cleanData["website"])
+        // turn data string into JSON
+        if (postedData && typeof (postedData) !== 'undefined') {
+          const cleanData = JSON.parse(postedData)
+          return res.end(cleanData["website"])
+        } else {
+          return res.end('website')
+        }
       })
     } else {
       res.writeHead(405, headers)
