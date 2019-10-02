@@ -28,13 +28,13 @@ http
         // postedData = {"website":"some value"}
         // with express, body-parser provides req.body.website for this value
 
-        // clean out the curly braces for a basic response
-        const cleanData = postedData.replace(/[{}]/g, '')
-        return res.end(cleanData)
+        // turn data string into JSON 
+        const cleanData = JSON.parse(postedData)
+        return res.end(cleanData["website"])
       })
+    } else {
+      res.writeHead(405, headers)
+      return res.end(`${req.method} is not allowed for the request.`)
     }
-
-    res.writeHead(405, headers)
-    return res.end(`${req.method} is not allowed for the request.`)
   })
   .listen(process.env.PORT || 3030)
