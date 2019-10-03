@@ -14,10 +14,10 @@ To run the Express version of the app:
 5.) Open src/index.js and update useExpress = true  
 6.) Run `node express.js`
 
-To run with Docker(non-express server only):
-7.) Stop any previous processes.
-8.) Open src/index.js and update useExpress = false
-9.) Install docker
-10.) Run `npm run docker:build` to build docker image
-11.) Run `npm run docker:run` to run image in container
+To run with Docker(non-express server only):  
+7.) Stop any previous processes.   
+8.) Open src/index.js and update useExpress = false  
+9.) Install docker  
+10.) Run `npm run docker:build` to build docker image  
+11.) Run `npm run docker:run` to run image in container  
 12.) Visit `localhost:3000`
