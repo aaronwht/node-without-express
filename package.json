@@ -13,7 +13,11 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "express": "node express.js",
+    "http": "node index.js",
+    "serve:express": "node express.js | serve -l 3000 -s build",
+    "serve:http": "serve -l 3000 -s build | node index.js"
   },
   "eslintConfig": {
     "extends": "react-app"
