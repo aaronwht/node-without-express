@@ -7,7 +7,8 @@
     "cors": "^2.8.5",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
-    "react-scripts": "2.1.2"
+    "react-scripts": "2.1.2",
+    "serve": "^11.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -17,7 +18,9 @@
     "express": "node express.js",
     "http": "node index.js",
     "serve:express": "node express.js | serve -l 3000 -s build",
-    "serve:http": "serve -l 3000 -s build | node index.js"
+    "serve:http": "serve -l 3000 -s build | node index.js",
+    "docker:build": "docker build -t node-without-express .",
+    "docker:run": "docker run --name test-docker -p 3000:3000 -p 3030:3030 -d node-without-express"
   },
   "eslintConfig": {
     "extends": "react-app"
