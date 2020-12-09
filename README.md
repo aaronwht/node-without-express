@@ -2,7 +2,7 @@
 
 This project defaults to using raw Node.js without Express.
 
-[Contact me](https://www.aaronwht.com/contact-me) if you run into problems with this code.  
+[Contact me](https://www.aaronwht.com) if you run into problems with this code.  
 
 Instructions to run the app:  
 1.) Run `npm install` to install dependencies  
