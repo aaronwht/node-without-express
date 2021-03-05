@@ -1,40 +1,38 @@
 import React, { Component } from 'react'
-import axios from 'axios'
 
-export default class WithoutExpress extends Component {
+export default class App extends Component {
   constructor(props) {
     super(props)
 
-    this.state = { website: '', message: 'Without Express' }
+    this.state = { website: '', message: '' }
     this.handleChange = this.handleChange.bind(this)
     this.submitForm = this.submitForm.bind(this)
   }
 
   handleChange(event) {
-    this.setState({
-      [event.target.name]:
-        event.target.type === 'checkbox'
-          ? event.target.checked
-          : event.target.value
-    })
+    this.setState({ [event.target.name]: event.target.type === 'checkbox' ? event.target.checked : event.target.value })
   }
 
-  submitForm(event) {
+  async submitForm(event) {
     event.preventDefault()
 
-    axios
-      .post(
-        'http://localhost:3030/',
-        { website: this.state.website },
-        { headers: { 'Content-Type': 'application/x-www-form-urlencoded' } }
-      )
-      .then(res => {
-        setTimeout(() => {
-          this.setState({ message: '', website: '' })
-        }, 750)
+    const resp = await window.fetch('http://localhost:3030', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Mode: 'cors',
+        Accept: 'application/json',
+        Cache: 'no-cache',
+      },
+      body: JSON.stringify({ website: this.state.website }),
+    });
 
-        this.setState({ message: res.data })
-      })
+    const data = await resp.json();
+    this.setState({ message: data.website })
+
+    setTimeout(() => {
+      this.setState({ message: '', website: '' })
+    }, 750)
   }
 
   render() {
